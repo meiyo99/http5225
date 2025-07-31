@@ -14,7 +14,7 @@
 
 
     </style>
-    <div class="color" style="background:red;">test</div>
+    <div class="color" style="background:red;">hello</div>
     <?php
         $connect = mysqli_connect('localhost', 'root', '', 'colors');
         if (!$connect) {
