@@ -1,0 +1,31 @@
+Games Database Structure
+========================
+
+Table 1: games
+--------------
+id (INT, PRIMARY KEY, AUTO_INCREMENT)
+title (VARCHAR(255)) - Game title
+genre (VARCHAR(100)) - Game genre 
+platform (VARCHAR(50)) - Gaming platform
+price (DECIMAL(5,2)) - Game price
+rating (DECIMAL(3,1)) - Game rating out of 10
+release_date (DATE) - Release date
+developer (VARCHAR(200)) - Developer name
+multiplayer (BOOLEAN) - Supports multiplayer
+description (TEXT) - Game description
+
+Table 2: reviews
+----------------
+id (INT, PRIMARY KEY, AUTO_INCREMENT)
+game_id (INT, FOREIGN KEY references games.id)
+reviewer_name (VARCHAR(100))
+review_score (INT) - Score out of 100
+review_date (DATE)
+review_text (TEXT)
+
+Sample Data Types Included:
+- Text: title, genre, platform, developer, description
+- Numbers: price, rating, review_score
+- Dates: release_date, review_date
+- Boolean: multiplayer
+- Foreign Key Relationships: game_id

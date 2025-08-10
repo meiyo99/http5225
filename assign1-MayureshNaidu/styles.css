@@ -1,0 +1,12 @@
+body {
+    background-color: #f5f5f5;
+    padding: 20px;
+}
+
+.expensive {
+    background-color: #ffe6e6;
+}
+
+.cheap {
+    background-color: #e6f3ff;
+}
