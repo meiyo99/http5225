@@ -3,20 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Professor;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
 {
     public function index()
     {
-        return view('courses.index', [
-            'courses' => Course::all()
-        ]);
+        $courses = Course::all();
+        return view('courses.index', compact('courses'));
     }
 
     public function create()
     {
-        return view('courses.create');
+        $professors = Professor::all();
+        return view('courses.create', compact('professors'));
     }
 
     public function store(Request $request)
@@ -37,7 +38,8 @@ class CourseController extends Controller
 
     public function edit(Course $course)
     {
-        return view('courses.edit', compact('course'));
+        $professors = Professor::all();
+        return view('courses.edit', compact('course', 'professors'));
     }
 
     public function update(Request $request, Course $course)

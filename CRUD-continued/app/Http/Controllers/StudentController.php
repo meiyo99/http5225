@@ -3,20 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
+use App\Models\Course;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
     public function index()
     {
-        return view('students.index', [
-            'students' => Student::all()
-        ]);
+        $students = Student::all();
+        return view('students.index', compact('students'));
     }
 
     public function create()
     {
-        return view('students.create');
+        $courses = Course::all();
+        return view('students.create', compact('courses'));
     }
 
     public function store(Request $request)
@@ -27,7 +28,12 @@ class StudentController extends Controller
             'email' => 'required|email',
         ]);
 
-        Student::create($request->all());
+        $student = Student::create($request->all());
+        
+        if ($request->courses) {
+            $student->courses()->attach($request->courses);
+        }
+        
         return redirect()->route('students.index');
     }
 
@@ -38,7 +44,8 @@ class StudentController extends Controller
 
     public function edit(Student $student)
     {
-        return view('students.edit', compact('student'));
+        $courses = Course::all();
+        return view('students.edit', compact('student', 'courses'));
     }
 
     public function update(Request $request, Student $student)
@@ -50,6 +57,13 @@ class StudentController extends Controller
         ]);
 
         $student->update($request->all());
+        
+        if ($request->courses) {
+            $student->courses()->sync($request->courses);
+        } else {
+            $student->courses()->sync([]);
+        }
+        
         return redirect()->route('students.index');
     }
 

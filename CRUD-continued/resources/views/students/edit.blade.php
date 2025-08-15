@@ -22,6 +22,17 @@
             <input type="email" class="form-control" name="email" value="{{ $student->email }}">
         </div>
         
+        <div class="mb-3">
+            <label>Courses</label>
+            @foreach ($courses as $course)
+                <div>
+                    <input type="checkbox" name="courses[]" value="{{ $course->id }}" 
+                        {{ in_array($course->id, $student->courses->pluck('id')->toArray()) ? 'checked' : '' }}>
+                    {{ $course->name }}
+                </div>
+            @endforeach
+        </div>
+        
         <button type="submit" class="btn btn-primary">Update</button>
         <a href="{{ route('students.index') }}">Back</a>
     </form>

@@ -30,6 +30,16 @@
             @enderror
         </div>
         
+        <div class="mb-3">
+            <label>Courses</label>
+            @foreach ($courses as $course)
+                <div>
+                    <input type="checkbox" name="courses[]" value="{{ $course->id }}">
+                    {{ $course->name }}
+                </div>
+            @endforeach
+        </div>
+        
         <button type="submit" class="btn btn-primary">Add</button>
         <a href="{{ route('students.index') }}">Back</a>
     </form>

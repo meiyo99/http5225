@@ -22,6 +22,16 @@
             @enderror
         </div>
         
+        <div class="mb-3">
+            <label>Professor</label>
+            <select name="professor_id">
+                <option value="">Select Professor</option>
+                @foreach($professors as $professor)
+                    <option value="{{ $professor->id }}">{{ $professor->name }}</option>
+                @endforeach
+            </select>
+        </div>
+        
         <button type="submit" class="btn btn-primary">Add</button>
         <a href="{{ route('courses.index') }}">Back</a>
     </form>

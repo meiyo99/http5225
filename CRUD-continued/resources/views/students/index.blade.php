@@ -10,6 +10,7 @@
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>
+            <th>Courses</th>
             <th>Actions</th>
         </tr>
         @foreach ($students as $student)
@@ -17,6 +18,13 @@
                 <td>{{ $student->fname }}</td>
                 <td>{{ $student->lname }}</td>
                 <td>{{ $student->email }}</td>
+                <td>
+                    @if($student->courses->count() > 0)
+                        {{ $student->courses->pluck('name')->implode(', ') }}
+                    @else
+                        No courses
+                    @endif
+                </td>
                 <td>
                     <a href="{{ route('students.show', $student->id) }}">View</a>
                     <a href="{{ route('students.edit', $student->id) }}">Edit</a>
